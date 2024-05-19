@@ -17,7 +17,7 @@ const Login = () => {
     setError("");
     try {
       await logIn(email, password);
-      navigate("/home");
+      navigate("/home", { replace: true }); // Use replace to prevent going back to the previous page
     } catch (err) {
       setError(err.message);
     }
@@ -27,25 +27,25 @@ const Login = () => {
     e.preventDefault();
     try {
       await googleSignIn();
-      navigate("/home");
+      navigate("/home", { replace: true }); // Use replace to prevent going back to the previous page
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message); // Use console.error instead of console.log for errors
     }
   };
 
   return (
     <>
       <div className="p-4 box">
-        <h2 className="mb-3">Firebase/ React Auth Login</h2>
+        <h2 className="mb-3">Welcome Back</h2>
 
         {error && <Alert variant="danger">{error}</Alert>}
 
         <Form onSubmit={handleSubmit}>
-          
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Control
               type="email"
               placeholder="Email address"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </Form.Group>
@@ -54,6 +54,7 @@ const Login = () => {
             <Form.Control
               type="password"
               placeholder="Password"
+              value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </Form.Group>
