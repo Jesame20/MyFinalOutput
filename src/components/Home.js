@@ -21,12 +21,12 @@ const Home = () => {
         Welcome <br />
         {user && user.email}
       </div>
+      <TodoList /> {/* render the TodoList component */}
       <div className="d-grid gap-2">
         <Button variant="primary" onClick={handleLogout}>
           Log out
         </Button>
       </div>
-      <TodoList /> {/* Render the TodoList component */}
     </>
   );
 };
